@@ -118,7 +118,7 @@ let reqs=[
 {id:4,pet:3,email:"ana@demo.com",fecha:"25/09/2026",estado:"Rechazada"}];
 const S={view:"landing",user:null,pet:null,req:null};
 const ADOP=["catalogo","ficha","enviar","enviada","mis","detalleA"];
-const ENC=["dashboard","panel","detalleE","confApr","confRech","resApr","resRech"];
+const ENC=["panel","detalleE","confApr","confRech","resApr","resRech"];
 const $=s=>document.querySelector(s);
 const getPet=id=>pets.find(p=>p.id===id);
 const getUser=e=>users.find(u=>u.email===e);
@@ -129,6 +129,7 @@ const ev=(...a)=>`<div class="ev" aria-label="Evidencia de criterios">Evidencia:
 const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const hoy=()=>new Date().toLocaleDateString("es-CO");
 const avail=()=>pets.filter(p=>p.disp);
+const petsPanel=()=>`<h3 style="margin:16px 0 8px;font-size:16px">Disponibilidad de las mascotas</h3><div class="chips">${pets.map(p=>`<span style="display:inline-flex;gap:6px;align-items:center">${p.nombre} ${tagP(p)}</span>`).join("")}</div>`;
 function go(v,x){Object.assign(S,{view:v},x||{});render();window.scrollTo(0,0)}
 function petCard(p,btn){return `<div class="pet"><div class="ph" style="background:${COLORS[p.id%6]}"><i class="ti ${ic(p.especie)}" aria-hidden="true"></i></div><h3>${p.nombre}</h3><p>${p.especie} · ${p.edad} · ${p.salud}</p>${tagP(p)}${btn?`<div style="margin-top:8px"><button class="btn alt block" data-go="ficha" data-pet="${p.id}">Ver ficha</button></div>`:""}</div>`}
 
@@ -160,7 +161,7 @@ ${mine?`<p class="note">Ya enviaste una solicitud para ${p.nombre}. Estado: ${ta
 :`<p class="note">${p.nombre} ya no está disponible para nuevas solicitudes.</p>`}</div>`},
 enviar(){const p=getPet(S.pet);
 return `<button class="back" data-go="ficha" data-pet="${p.id}"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a la ficha</button>
-<div class="hero"><div><h1>Enviar solicitud de adopción</h1><p>Revisa los datos y envía la solicitud para iniciar el proceso.</p></div>${ev("HU1")}</div>
+<div class="hero"><div><h1>Enviar solicitud de adopción</h1><p>Revisa los datos y envía la solicitud para iniciar el proceso.</p></div>${ev("HU1-E03")}</div>
 <div class="two"><div class="panel"><h2>Mascota</h2><dl><dt>Nombre</dt><dd>${p.nombre}</dd><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Disponibilidad</dt><dd>${tagP(p)}</dd></dl></div>
 <div class="panel"><h2>Adoptante</h2><dl><dt>Nombre</dt><dd>${S.user.nombre}</dd><dt>Correo</dt><dd>${S.user.email}</dd></dl>
 <p class="note" style="margin:12px 0">Al enviarla, la solicitud quedará en estado Pendiente.</p>
@@ -180,14 +181,10 @@ return `<button class="back" data-go="mis"><i class="ti ti-arrow-left" aria-hidd
 <div class="hero"><div><h1>Detalle de mi solicitud</h1></div>${ev("HU2-01","HU2-02")}</div>
 <div class="two"><div class="panel"><h2>Solicitud de adopción</h2><dl><dt>Mascota</dt><dd>${p.nombre}</dd><dt>Fecha de solicitud</dt><dd>${r.fecha}</dd><dt>Estado</dt><dd>${tagE(r.estado)}</dd></dl><p class="note" style="margin-top:12px">${msg}</p></div>
 <div class="panel"><h2>Mascota</h2><dl><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Disponibilidad</dt><dd>${tagP(p)}</dd></dl></div></div>`},
-dashboard(){const c=e=>reqs.filter(r=>r.estado===e).length;
-return `<div class="hero"><div><h1>Dashboard</h1><p>Resumen para el encargado de adopciones.</p></div></div>
-<div class="stats"><div class="stat"><b>${c("Pendiente")}</b><span>Solicitudes pendientes</span></div><div class="stat"><b>${c("Aprobada")}</b><span>Aprobadas</span></div><div class="stat"><b>${c("Rechazada")}</b><span>Rechazadas</span></div><div class="stat"><b>${avail().length}</b><span>Mascotas disponibles</span></div></div>
-<button class="btn" data-go="panel"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Ir a Solicitudes de adopción</button>`},
 panel(){const l=[...reqs].sort((a,b)=>(a.estado==="Pendiente"?0:1)-(b.estado==="Pendiente"?0:1));
 return `<div class="hero"><div><h1>Solicitudes de adopción</h1><p>Selecciona una solicitud pendiente para revisarla.</p></div>${ev("HU3-01","HU4-01")}</div>
-<div class="panel scroll"><table><thead><tr><th>Adoptante</th><th>Mascota</th><th>Estado</th><th>Acción</th></tr></thead><tbody>
-${l.map(r=>{const p=getPet(r.pet),u=getUser(r.email);return `<tr><td>${u.nombre}</td><td>${p.nombre}</td><td>${tagE(r.estado)}</td><td>${r.estado==="Pendiente"?`<button class="btn" data-go="detalleE" data-req="${r.id}">Revisar solicitud</button>`:`<button class="btn alt" data-go="detalleE" data-req="${r.id}">Ver detalle</button>`}</td></tr>`}).join("")}</tbody></table></div>`},
+<div class="panel"><label style="margin-bottom:10px">Buscar solicitudes por adoptante o mascota<input id="qe" type="search" placeholder="Ej. Ana o Luna"></label><div class="scroll"><table id="tbe"><thead><tr><th>Adoptante</th><th>Mascota</th><th>Estado</th><th>Acción</th></tr></thead><tbody>
+${l.map(r=>{const p=getPet(r.pet),u=getUser(r.email);return `<tr data-n="${(u.nombre+" "+p.nombre).toLowerCase()}"><td>${u.nombre}</td><td>${p.nombre}</td><td>${tagE(r.estado)}</td><td>${r.estado==="Pendiente"?`<button class="btn" data-go="detalleE" data-req="${r.id}">Revisar solicitud</button>`:`<button class="btn alt" data-go="detalleE" data-req="${r.id}">Ver detalle</button>`}</td></tr>`}).join("")}</tbody></table></div><p class="empty" id="sinrese" hidden>No hay solicitudes que coincidan.</p></div>`},
 detalleE(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet),u=getUser(r.email),pen=r.estado==="Pendiente";
 return `<button class="back" data-go="panel"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a solicitudes</button>
 <div class="hero"><div><h1>Detalle de la solicitud</h1></div>${ev("HU3-02","HU4-02")}</div>
@@ -205,49 +202,38 @@ return `<div class="confirm panel"><i class="ti ti-help-circle" style="color:var
 <p><b>¿Desea rechazar esta solicitud?</b></p><p>La solicitud de ${getUser(r.email).nombre} por ${p.nombre} será marcada como rechazada y la mascota continuará disponible.</p>
 <div class="acts" style="justify-content:center"><button class="btn alt" data-go="detalleE" data-req="${r.id}">Cancelar</button><button class="btn bad" data-do="rechazar">Confirmar rechazo</button></div>${ev("HU4-03")}</div>`},
 resApr(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
-return `<div class="hero"><div><h1>Resultado de la aprobación</h1></div>${ev("HU3-03","HU3-04","HU5")}</div>
-<div class="ok-msg"><i class="ti ti-circle-check" aria-hidden="true"></i> Solicitud aprobada correctamente.</div>
+return `<div class="hero"><div><h1>Resultado de la aprobación</h1></div>${ev("HU3-03","HU3-04")}</div>
+<div class="ok-msg"><i class="ti ti-circle-check" aria-hidden="true"></i> Aprobación confirmada. Nuevo estado de la solicitud: Aprobada. La mascota ya no está disponible.</div>
 <div class="panel"><h2>Solicitud de ${getUser(r.email).nombre}</h2>
 <div class="ba"><div class="box"><b>Solicitud, antes</b>${tagE("Pendiente")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>Solicitud, ahora</b>${tagE(r.estado)}</div></div>
-<div class="ba"><div class="box"><b>${p.nombre}, antes</b>${tagE("Disponible").replace("e-Aprobada","e-Disponible")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>${p.nombre}, ahora</b>${tagP(p)}</div></div>
+<div class="ba"><div class="box"><b>${p.nombre}, antes</b>${tagP({disp:true})}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>${p.nombre}, ahora</b>${tagP(p)}</div></div>
 <p class="note">Mascotas disponibles ahora: ${avail().map(x=>x.nombre).join(", ")||"ninguna"}. ${p.nombre} ya no aparece en el listado.</p>
-<div style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button></div></div>`},
+${petsPanel()}<div class="acts" style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button><button class="btn alt" data-do="verAdop" data-req="${r.id}">Ver cómo lo ve el adoptante</button></div></div>`},
 resRech(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
 return `<div class="hero"><div><h1>Resultado del rechazo</h1></div>${ev("HU4-03","HU4-04")}</div>
-<div class="ko-msg"><i class="ti ti-circle-x" aria-hidden="true"></i> Solicitud rechazada correctamente.</div>
+<div class="ko-msg"><i class="ti ti-circle-x" aria-hidden="true"></i> Rechazo confirmado. Nuevo estado de la solicitud: Rechazada. La mascota continúa disponible.</div>
 <div class="panel"><h2>Solicitud de ${getUser(r.email).nombre}</h2>
 <div class="ba"><div class="box"><b>Solicitud, antes</b>${tagE("Pendiente")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>Solicitud, ahora</b>${tagE(r.estado)}</div></div>
 <div class="ba"><div class="box"><b>${p.nombre}, antes</b>${tagP(p)}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>${p.nombre}, ahora</b>${tagP(p)}</div></div>
 <p class="note">${p.nombre} continúa disponible. Mascotas disponibles ahora: ${avail().map(x=>x.nombre).join(", ")}.</p>
-<div style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button></div></div>`},
-traza(){const rows=[
-["HU1","Enviar solicitud de adopción, mostrando la mascota","Enviar solicitud de adopción"],
-["HU2","HU2-01 Mostrar estado","Mis solicitudes, Detalle de mi solicitud"],
-["HU2","HU2-02 Estados: Pendiente, Aprobada, Rechazada","Mis solicitudes"],
-["HU2","HU2-03 Solo solicitudes propias","Mis solicitudes (probar con Juan y con Ana)"],
-["HU3","HU3-01 Seleccionar solicitud sin estado","Solicitudes de adopción"],
-["HU3","HU3-02 Opción de aprobar","Detalle de la solicitud"],
-["HU3","HU3-03 Estado cambia a Aprobada","Confirmación y resultado de aprobación"],
-["HU3","HU3-04 La mascota deja de estar disponible","Resultado de aprobación y catálogo"],
-["HU4","HU4-01 Seleccionar solicitud sin estado","Solicitudes de adopción"],
-["HU4","HU4-02 Opción de rechazar","Detalle de la solicitud"],
-["HU4","HU4-03 Estado cambia a Rechazada","Confirmación y resultado de rechazo"],
-["HU4","HU4-04 La mascota continúa disponible","Resultado de rechazo y catálogo"],
-["HU5","El estado se actualiza automáticamente al aprobar","Resultado de aprobación (antes y ahora)"]];
-return `<div class="hero"><div><h1>Trazabilidad</h1><p>Cada criterio de aceptación y la pantalla donde se comprueba. Las etiquetas "Evidencia" de cada pantalla usan estos mismos códigos.</p></div></div>
-<div class="panel scroll"><table><thead><tr><th>Historia</th><th>Criterio</th><th>Pantalla</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`}
+${petsPanel()}<div class="acts" style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button><button class="btn alt" data-do="verAdop" data-req="${r.id}">Ver cómo lo ve el adoptante</button></div></div>`},
+traza(){const rows=[["HU1-E03", "Enviar la solicitud de adopción", "Interfaz y formulario para enviar la solicitud", "Ficha de la mascota y Enviar solicitud", "Pulsar «Enviar solicitud de adopción»", "Solicitud registrada en Pendiente y visible en Mis solicitudes", "Pendiente de confirmar"], ["HU2-01", "Consultar el estado de solicitud", "La solicitud debe mostrar un estado", "Mis solicitudes y Detalle", "Abrir Mis solicitudes", "Cada solicitud muestra su estado"], ["HU2-02", "Consultar el estado de solicitud", "Los estados de la solicitud deben ser: aprobada, rechazada o pendiente", "Mis solicitudes (cuenta Ana)", "Ingresar como Ana", "Se ven los tres estados"], ["HU2-03", "Consultar el estado de solicitud", "El adoptante solo puede consultar las solicitudes asociadas a la cuenta del adoptante que inició sesión", "Mis solicitudes", "Ingresar como Juan y luego como Ana", "Cada uno ve solo las suyas"], ["HU2-T1", "Consultar el estado de solicitud", "Diseñar un buscador para consultar las solicitudes", "Mis solicitudes", "Escribir el nombre de una mascota", "El listado se filtra"], ["HU2-T2", "Consultar el estado de solicitud", "Mostrar solamente las solicitudes relacionadas con el adoptante", "Mis solicitudes", "Ingresar con cada cuenta", "Listado limitado a la cuenta"], ["HU2-T3", "Consultar el estado de solicitud", "Mostrar el estado actual de cada solicitud", "Mis solicitudes", "Abrir el listado", "Etiqueta de estado en cada fila"], ["HU2-T4", "Consultar el estado de solicitud", "Permitir identificar si la solicitud está pendiente, aprobada o rechazada", "Detalle de mi solicitud", "Pulsar «Ver detalle»", "Estado en texto y mensaje explicativo"], ["HU2-T5", "Consultar el estado de solicitud", "Actualizar la información cuando el estado de la solicitud sea modificado", "Resultado de aprobación o rechazo", "Pulsar «Ver cómo lo ve el adoptante»", "El adoptante ve el nuevo estado"], ["HU3-01", "Aprobar solicitud", "El encargado de adopciones debe poder seleccionar una solicitud que esté en estado pendiente", "Solicitudes de adopción", "Pulsar «Revisar solicitud»", "Se abre el detalle de la pendiente"], ["HU3-02", "Aprobar solicitud", "Debe tener una opción para aprobar la solicitud", "Detalle de la solicitud", "Ver el botón", "«Aprobar solicitud» solo en pendientes"], ["HU3-03", "Aprobar solicitud", "Al ser aprobada la solicitud, su estado debe cambiar a aprobada", "Confirmación y resultado de aprobación", "Confirmar aprobación", "Estado antes y ahora: Aprobada"], ["HU3-04", "Aprobar solicitud", "La mascota relacionada con la solicitud que fue aprobada debe dejar de aparecer como disponible", "Resultado de aprobación y catálogo", "Revisar la mascota", "No disponible, fuera del catálogo"], ["HU3-T1", "Aprobar solicitud", "Agregar la opción de aprobar en las solicitudes pendientes", "Detalle de la solicitud", "Ver el botón", "Botón visible solo en pendientes"], ["HU3-T2", "Aprobar solicitud", "Actualizar el estado de la solicitud aprobada", "Resultado de aprobación", "Confirmar aprobación", "Estado Aprobada"], ["HU3-T3", "Aprobar solicitud", "Actualizar el estado de la mascota relacionada con la solicitud", "Resultado de aprobación", "Confirmar aprobación", "Mascota No disponible"], ["HU3-T4", "Aprobar solicitud", "Mostrar una confirmación de la aprobación", "Confirmación y resultado", "Confirmar aprobación", "Mensaje con la acción y el nuevo estado"], ["HU4-01", "Rechazar solicitud", "El encargado de adopciones debe poder seleccionar una solicitud que esté en estado pendiente", "Solicitudes de adopción", "Pulsar «Revisar solicitud»", "Se abre el detalle de la pendiente"], ["HU4-02", "Rechazar solicitud", "Debe tener una opción para rechazar la solicitud", "Detalle de la solicitud", "Ver el botón", "«Rechazar solicitud» solo en pendientes"], ["HU4-03", "Rechazar solicitud", "Al ser rechazada la solicitud, su estado debe cambiar a rechazada", "Confirmación y resultado de rechazo", "Confirmar rechazo", "Estado antes y ahora: Rechazada"], ["HU4-04", "Rechazar solicitud", "La mascota relacionada con la solicitud que fue rechazada debe continuar disponible", "Resultado de rechazo y catálogo", "Revisar la mascota", "Sigue Disponible en el catálogo"], ["HU4-T1", "Rechazar solicitud", "Agregar la opción de rechazar en las solicitudes pendientes", "Detalle de la solicitud", "Ver el botón", "Botón visible solo en pendientes"], ["HU4-T2", "Rechazar solicitud", "Actualizar el estado de la solicitud rechazada", "Resultado de rechazo", "Confirmar rechazo", "Estado Rechazada"], ["HU4-T3", "Rechazar solicitud", "Mantener la mascota disponible", "Resultado de rechazo", "Confirmar rechazo", "Mascota Disponible"], ["HU4-T4", "Rechazar solicitud", "Mostrar una confirmación del rechazo", "Confirmación y resultado", "Confirmar rechazo", "Mensaje con la acción y el nuevo estado"]];
+const P=["Los campos del formulario de HU1-E03 no están definidos en el contenido disponible: el mockup solo confirma mascota y datos de la cuenta, sin inventar campos ni documentos.","Las tareas de las historias no traen ID propio en el contenido disponible: se rotularon T1, T2, etc. por orden.","Se retiraron el Dashboard y la historia HU5 por no figurar en la épica E03 proporcionada. Confirmar si existen en Trello.","No se recibió el documento de Bigotes y Colitas: no se pudieron contrastar diferencias con Trello.","No hay motivo de rechazo ni requisitos de aprobación definidos: no se agregaron."];
+return `<div class="hero"><div><h1>Matriz de trazabilidad E03</h1><p>Orden de Trello. Cada pantalla muestra además sus etiquetas de evidencia.</p></div></div>
+<div class="panel scroll"><table style="min-width:980px"><thead><tr><th>ID de Trello</th><th>Historia de usuario</th><th>Criterio o tarea</th><th>Pantalla</th><th>Acción</th><th>Resultado esperado</th><th>Estado</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]?`<span class="tag e-Pendiente">${r[6]}</span>`:`<span class="tag e-Aprobada">Cumple</span>`}</td></tr>`).join("")}</tbody></table></div>
+<div class="panel" style="margin-top:18px"><h2>Pendientes de confirmar</h2><ul>${P.map(x=>`<li>${x}</li>`).join("")}</ul></div>`}
 };
 
 function head(){
-  const u=S.user,items=!u?[]:u.rol==="adoptante"?[["catalogo","Mascotas"],["mis","Mis solicitudes"]]:[["dashboard","Dashboard"],["panel","Solicitudes de adopción"]];
+  const u=S.user,items=!u?[]:u.rol==="adoptante"?[["catalogo","Mascotas"],["mis","Mis solicitudes"]]:[["panel","Solicitudes de adopción"]];
   const on=k=>S.view===k||(k==="catalogo"&&["ficha","enviar","enviada"].includes(S.view))||(k==="mis"&&S.view==="detalleA")||(k==="panel"&&["detalleE","confApr","confRech","resApr","resRech"].includes(S.view));
-  $("#hd").innerHTML=`<button class="logo" data-go="${!u?"landing":u.rol==="adoptante"?"catalogo":"dashboard"}"><i class="ti ti-paw" aria-hidden="true"></i><span>PetMatch<small>Bigotes y Colitas</small></span></button>
+  $("#hd").innerHTML=`<button class="logo" data-go="${!u?"landing":u.rol==="adoptante"?"catalogo":"panel"}"><i class="ti ti-paw" aria-hidden="true"></i><span>PetMatch<small>Bigotes y Colitas</small></span></button>
   <nav aria-label="Principal">${items.map(([k,l])=>`<button data-go="${k}" class="${on(k)?"on":""}">${l}</button>`).join("")}</nav>
   ${u?`<div class="who">${u.nombre} · ${u.rol==="adoptante"?"Adoptante":"Encargada de adopciones"} <button data-do="logout">Salir</button></div>`:(S.view!=="login"?`<div class="who"><button data-go="login">Iniciar sesión</button></div>`:"")}`;
 }
 function render(){
   const u=S.user;
-  if(ADOP.includes(S.view)&&(!u||u.rol!=="adoptante"))S.view=u?"dashboard":"login";
+  if(ADOP.includes(S.view)&&(!u||u.rol!=="adoptante"))S.view=u?"panel":"login";
   else if(ENC.includes(S.view)&&(!u||u.rol!=="encargado"))S.view=u?"catalogo":"login";
   if(["detalleA"].includes(S.view)){const r=reqs.find(x=>x.id===S.req);if(!r||r.email!==u.email)S.view="mis"}
   if(["ficha","enviar"].includes(S.view)&&!getPet(S.pet))S.view="catalogo";
@@ -264,6 +250,7 @@ document.addEventListener("click",e=>{
     if(reqs.some(r=>r.pet===S.pet&&r.email===S.user.email)||!getPet(S.pet).disp)return;
     const id=Math.max(...reqs.map(r=>r.id))+1;
     reqs.push({id,pet:S.pet,email:S.user.email,fecha:hoy(),estado:"Pendiente"});go("enviada",{req:id})}
+  else if(k==="verAdop"){const r=reqs.find(x=>x.id===+a.dataset.req);S.user=getUser(r.email);go("detalleA",{req:r.id})}
   else if(k==="aprobar"){const r=reqs.find(x=>x.id===S.req);if(r.estado!=="Pendiente")return;r.estado="Aprobada";getPet(r.pet).disp=false;go("resApr")}
   else if(k==="rechazar"){const r=reqs.find(x=>x.id===S.req);if(r.estado!=="Pendiente")return;r.estado="Rechazada";go("resRech")}
 });
@@ -272,12 +259,16 @@ document.addEventListener("input",e=>{if(e.target.id!=="q")return;
   const t=e.target.value.trim().toLowerCase();let n=0;
   document.querySelectorAll("#lista .row").forEach(r=>{const show=r.dataset.n.includes(t);r.hidden=!show;if(show)n++});
   $("#sinres").hidden=n>0});
+document.addEventListener("input",e=>{if(e.target.id!=="qe")return;
+  const t=e.target.value.trim().toLowerCase();let n=0;
+  document.querySelectorAll("#tbe tbody tr").forEach(r=>{const show=r.dataset.n.includes(t);r.hidden=!show;if(show)n++});
+  $("#sinrese").hidden=n>0});
 function login(email,pass){
   const err=m=>{const x=$("#lerr");if(x)x.textContent=m};
   if(!EMAIL_RE.test(email))return err("Ingresa un correo válido, por ejemplo nombre@dominio.com.");
   const u=users.find(x=>x.email.toLowerCase()===email.toLowerCase()&&x.pass===pass);
   if(!u)return err("Correo o contraseña incorrectos.");
-  S.user=u;go(u.rol==="adoptante"?"catalogo":"dashboard");
+  S.user=u;go(u.rol==="adoptante"?"catalogo":"panel");
 }
 render();
 </script>
