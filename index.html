@@ -3,422 +3,281 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PetMatch · Pruebas</title>
+<title>PetMatch · Bigotes y Colitas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
-:root{
---bg:#f6f4ef;--card:#fff;--ink:#1e2622;--mut:#657169;--line:#e3e0d8;
---pri:#2d5a4a;--pri-d:#1f4236;--pri-t:#e9f1ed;
---sun:#e8a33d;
---ok-bg:#e4f3e8;--ok-t:#1c6b3a;--rev-bg:#fdf1dc;--rev-t:#8a5a0a;--no-bg:#fbe7e4;--no-t:#a0352a;
---r-sm:8px;--r-md:12px;--r-lg:18px;
---sh:0 1px 2px rgba(30,38,34,.06),0 2px 8px rgba(30,38,34,.04)
-}
+:root{--bg:#f2f6f1;--card:#fff;--ink:#1c2a26;--mut:#5d6f69;--line:#d8e2dc;--pri:#2f5d50;--pri-d:#224439;--sun:#f2b84b;--ok:#dcefe3;--ok-t:#1f5a37;--rev:#fdf0cf;--rev-t:#7a5410;--no:#f9dcd8;--no-t:#8a2a20;--nd:#e6e8ee;--nd-t:#3b4254}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;font-weight:700;line-height:1.18;letter-spacing:-.01em}
-a{color:var(--pri)}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:12px;top:12px;background:#fff;padding:8px 14px;border-radius:8px;z-index:50}
-header{background:var(--pri);color:#fff;position:sticky;top:0;z-index:10;box-shadow:var(--sh)}
-.hd-in{max-width:1040px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:9px;font-family:Fraunces,serif;font-weight:700;font-size:19px;cursor:pointer;background:none;border:0;color:#fff;padding:0}
-.logo i{color:var(--sun);font-size:24px}
-.logo small{display:block;font:500 11px Inter,sans-serif;opacity:.75;letter-spacing:.02em}
-nav{display:flex;gap:2px;flex-wrap:wrap}
-nav button{border:0;background:transparent;color:rgba(255,255,255,.8);padding:9px 14px;border-radius:999px;font:600 14px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px}
-nav button.on{background:rgba(255,255,255,.14);color:#fff}
-nav button:hover{color:#fff}
-.who{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.85)}
-.who button{border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;padding:6px 14px;border-radius:999px;cursor:pointer;font:600 13px Inter,sans-serif}
-main{max-width:1040px;margin:0 auto;padding:28px 20px 70px}
-.crumb{font-size:13px;color:var(--mut);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.page-head{margin-bottom:22px}
-.page-head h1{font-size:clamp(24px,4.4vw,32px)}
-.page-head p{color:var(--mut);margin:6px 0 0;max-width:58ch;font-size:15px}
-.btn{border:0;background:var(--pri);color:#fff;padding:11px 20px;border-radius:999px;font:600 15px Inter,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,transform .05s}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Nunito Sans",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;font-weight:700;line-height:1.15}
+header{background:var(--pri);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font:700 20px "Bricolage Grotesque",sans-serif;cursor:pointer;background:none;border:0;color:#fff;padding:0;text-align:left}
+.logo i{color:var(--sun);font-size:26px}
+.logo small{display:block;font:400 11px "Nunito Sans",sans-serif;opacity:.8}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:0;background:transparent;color:#fff;padding:8px 14px;border-radius:999px;font:600 14px "Nunito Sans",sans-serif;cursor:pointer}
+nav button.on{background:#fff;color:var(--pri-d)}
+.who{display:flex;align-items:center;gap:10px;font-size:14px}
+.who button{border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font:600 13px "Nunito Sans",sans-serif}
+main{max-width:980px;width:100%;margin:0 auto;padding:24px 20px 40px;flex:1}
+footer{text-align:center;font-size:13px;color:var(--mut);padding:16px}
+footer button{background:none;border:0;color:var(--pri);text-decoration:underline;cursor:pointer;font:inherit}
+.hero{margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:flex-start}
+.hero h1{font-size:clamp(26px,5vw,36px)}
+.hero p{color:var(--mut);margin:6px 0 0;max-width:58ch}
+.ev{display:flex;gap:4px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--mut)}
+.ev span{background:#fff;border:1px dashed var(--pri);color:var(--pri-d);border-radius:6px;padding:1px 7px;font-weight:700}
+.btn{border:0;background:var(--pri);color:#fff;padding:10px 18px;border-radius:10px;font:700 15px "Nunito Sans",sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .btn:hover{background:var(--pri-d)}
-.btn:active{transform:scale(.98)}
-.btn.alt{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
-.btn.alt:hover{background:var(--bg);border-color:var(--pri)}
-.btn.bad{background:#fff;color:var(--no-t);border:1.5px solid var(--no-bg)}
-.btn.bad:hover{background:var(--no-bg)}
-.btn.ok2{background:var(--ok-t)}
-.btn.ok2:hover{background:#15552e}
-.btn.block{width:100%}
-.btn.lg{padding:14px 26px;font-size:16px}
-.btn.sm{padding:7px 13px;font-size:13px}
-.btn[disabled]{opacity:.45;cursor:not-allowed}
-select,input,textarea{font:inherit;padding:11px 13px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;color:var(--ink);width:100%}
-select:focus,input:focus,textarea:focus,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #cfe3da;outline-offset:1px;border-color:var(--pri)}
-label{font-size:13.5px;font-weight:600;display:grid;gap:5px;color:var(--ink)}
-label .hint{font-weight:400;color:var(--mut);font-size:12.5px}
-.err{color:var(--no-t);font-size:13px;min-height:14px;display:flex;align-items:center;gap:5px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.pet{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px;box-shadow:var(--sh)}
-.ph{height:132px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:46px;margin-bottom:12px;color:var(--pri-d)}
-.pet h3{font-size:18px;margin-bottom:2px}
-.pet .meta{color:var(--mut);font-size:13.5px;margin:0 0 10px}
-.tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:4px 10px 4px 8px;border-radius:999px;white-space:nowrap}
-.s-Disponible{background:var(--ok-bg);color:var(--ok-t)}
-.s-En\ revisión,.s-Pendiente{background:var(--rev-bg);color:var(--rev-t)}
-.s-Adoptada,.s-Aceptada{background:var(--ok-bg);color:var(--ok-t)}
-.s-Rechazada{background:var(--no-bg);color:var(--no-t)}
-.filters-wrap{display:flex;gap:18px;align-items:flex-start;margin-bottom:22px}
-.filters{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;display:grid;gap:12px;min-width:200px}
-.filters h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);font-family:Inter,sans-serif}
-.filter-btn{display:none}
-@media(max-width:720px){
-  .filters-wrap{display:block}
-  .filters{display:none;margin-bottom:14px}
-  .filters.open{display:grid}
-  .filter-btn{display:inline-flex;margin-bottom:14px}
-}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh)}
-.panel h2{font-size:19px;margin-bottom:4px}
-.panel .sub{color:var(--mut);font-size:13.5px;margin-bottom:14px}
-.two{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
-@media(max-width:760px){.two{grid-template-columns:1fr}}
-dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font-size:14.5px}
-dt{color:var(--mut)}dd{margin:0;text-align:right;font-weight:600}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.alt:hover{background:var(--bg)}
+.btn.bad{background:var(--no-t)}
+.btn.bad:hover{background:#6e1f17}
+.btn.block{width:100%;justify-content:center}
+.btn.lg{padding:13px 24px;font-size:16px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%}
+label{font-size:14px;font-weight:700;display:grid;gap:4px}
 form{display:grid;gap:12px}
-.card-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:13px 0;border-top:1px solid var(--line)}
-.card-row:first-child{border-top:0}
-.acts{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.pet-mini{display:flex;align-items:center;gap:10px}
-.pet-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
-.empty{color:var(--mut);padding:30px 10px;text-align:center;font-size:14.5px}
-.empty i{font-size:26px;display:block;margin-bottom:8px;color:var(--line)}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:center;gap:8px;box-shadow:var(--sh)}
-.toast.show{opacity:1}
-.back{background:none;border:0;color:var(--pri);font:600 14px Inter,sans-serif;cursor:pointer;padding:0;margin-bottom:14px;display:inline-flex;align-items:center;gap:5px}
-.auth{max-width:420px;margin:30px auto}
-.auth .brand{text-align:center;margin-bottom:22px}
-.auth .brand i{font-size:34px;color:var(--pri)}
-.tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:18px}
-.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:999px;font:600 14px Inter,sans-serif;cursor:pointer;color:var(--mut)}
-.tabs button.on{background:var(--pri);color:#fff}
-.seg{display:flex;gap:8px}
-.seg label{flex:1;border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px;text-align:center;cursor:pointer;font-size:14px;background:#fff;font-weight:600}
-.seg input{width:auto;display:inline}
-.seg label:has(input:checked){border-color:var(--pri);background:var(--pri-t);color:var(--pri-d)}
-.demo{font-size:13px;color:var(--mut);text-align:center;margin-top:14px}
-.demo a{cursor:pointer;text-decoration:underline;font-weight:600}
-.editrow{background:var(--bg);border-radius:var(--r-md);padding:12px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));align-items:end;width:100%}
-.confirm{background:var(--no-bg);border:1px solid #f3c9c2;border-radius:var(--r-md);padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;width:100%}
-.confirm span{font-size:13.5px;color:var(--no-t);font-weight:600}
-.hero{background:linear-gradient(165deg,var(--pri),var(--pri-d));color:#fff;border-radius:24px;padding:46px 30px;text-align:center;margin-bottom:30px}
-.hero h1{font-size:clamp(28px,6vw,44px)}
-.hero p{opacity:.92;max-width:50ch;margin:12px auto 22px;font-size:16px}
-.hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.hero-cta .btn.alt{background:#fff;border:0}
-.hiw{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 30px}
-@media(max-width:760px){.hiw{grid-template-columns:repeat(2,1fr)}}
-.hiw div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;text-align:center}
-.hiw i{font-size:22px;color:var(--pri);background:var(--pri-t);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
-.hiw b{font-size:13.5px;display:block}
-.file{border:1.5px dashed var(--line);border-radius:var(--r-md);padding:18px;text-align:center;color:var(--mut);font-size:13.5px;cursor:pointer;background:var(--bg)}
-.file.on{border-color:var(--ok-t);color:var(--ok-t);background:var(--ok-bg)}
-.file i{font-size:22px;display:block;margin-bottom:6px}
-.steps{display:flex;gap:4px;margin-bottom:22px}
-.steps div{flex:1;text-align:center;font-size:12.5px;font-weight:700;color:var(--mut);padding-bottom:10px;border-bottom:3px solid var(--line)}
-.steps div.on{color:var(--pri);border-color:var(--pri)}
-.steps div.done{color:var(--ok-t);border-color:var(--ok-t)}
-.progress{display:flex;align-items:center;margin:4px 0 22px}
-.progress .pt{flex:1;text-align:center}
-.progress .dot{width:30px;height:30px;border-radius:50%;background:var(--line);color:var(--mut);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:14px}
-.progress .pt.on .dot{background:var(--pri);color:#fff}
-.progress .pt.done .dot{background:var(--ok-t);color:#fff}
-.progress .pt span{font-size:12px;color:var(--mut);font-weight:600}
-.progress .ln{height:2px;background:var(--line);flex:1;margin-bottom:24px}
-.radios{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-@media(max-width:500px){.radios{grid-template-columns:1fr}}
-.radios label{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px;text-align:center;font-size:13.5px;cursor:pointer;font-weight:600}
-.radios input{width:auto;display:inline}
-.radios label:has(input:checked){border-color:var(--pri);background:var(--pri-t)}
-.summary-box{background:var(--bg);border-radius:var(--r-md);padding:14px;font-size:14px}
-.summary-box dt{font-size:12.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.pet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.ph{height:110px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:10px}
+.pet h3{font-size:18px}
+.pet p{margin:2px 0 8px;color:var(--mut);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.e-Disponible,.e-Aprobada{background:var(--ok);color:var(--ok-t)}
+.e-Pendiente{background:var(--rev);color:var(--rev-t)}
+.e-Rechazada{background:var(--no);color:var(--no-t)}
+.e-nd{background:var(--nd);color:var(--nd-t)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.panel h2{font-size:19px;margin-bottom:12px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px}
+dt{color:var(--mut)}dd{margin:0;text-align:right}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font:700 28px "Bricolage Grotesque",sans-serif}
+.stat span{font-size:13px;color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.empty{color:var(--mut);padding:26px 0;text-align:center}
+.err{color:var(--no-t);font-size:13px;min-height:18px}
+.back{background:none;border:0;color:var(--pri);font:700 14px "Nunito Sans",sans-serif;cursor:pointer;padding:0;margin-bottom:12px}
+.landing-hero{background:linear-gradient(180deg,var(--pri),var(--pri-d));color:#fff;border-radius:18px;padding:40px 28px;text-align:center;margin-bottom:28px}
+.landing-hero h1{font-size:clamp(28px,6vw,42px)}
+.landing-hero p{opacity:.92;max-width:54ch;margin:10px auto 22px}
+.banner{background:var(--ok);color:var(--ok-t);border-radius:12px;padding:14px 18px;font-size:14px;margin-top:24px;display:flex;gap:10px;align-items:center}
+.auth{max-width:420px;margin:24px auto}
+.demo{display:grid;gap:8px;margin-top:14px}
+.demo button{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;font:600 14px "Nunito Sans",sans-serif;cursor:pointer;text-align:left;color:var(--ink)}
+.demo button:hover{border-color:var(--pri)}
+.demo small{color:var(--mut);font-weight:400}
+.ba{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:8px 0 14px}
+.ba .box{background:var(--bg);border-radius:10px;padding:10px;text-align:center;font-size:14px}
+.ba .box b{display:block;font-size:12px;color:var(--mut);font-weight:600;margin-bottom:4px}
+.ba i{font-size:22px;color:var(--pri)}
+.ok-msg{background:var(--ok);color:var(--ok-t);border-radius:12px;padding:12px 16px;font-weight:700;margin-bottom:16px;display:flex;gap:8px;align-items:center}
+.ko-msg{background:var(--no);color:var(--no-t);border-radius:12px;padding:12px 16px;font-weight:700;margin-bottom:16px;display:flex;gap:8px;align-items:center}
+.note{font-size:14px;color:var(--mut);background:var(--bg);border-radius:10px;padding:10px 12px}
+.confirm{max-width:520px;margin:30px auto;text-align:center}
+.confirm i{font-size:44px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 8px;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;border-top:0}
+.scroll{overflow-x:auto}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+@media (max-width:520px){.ba{grid-template-columns:1fr}.ba i{transform:rotate(90deg);justify-self:center}}
 </style>
 </head>
 <body>
-<a class="skip" href="#app">Saltar al contenido</a>
 <header id="hd"></header>
 <main id="app"></main>
-<div class="toast" id="toast" role="status"></div>
+<footer><button data-go="traza">Trazabilidad: historia de usuario, criterio y pantalla</button> · Mockup PMV2 · Bigotes y Colitas</footer>
 
 <script>
 const COLORS=["#dcefe3","#fdf0cf","#e3e6f3","#f9dcd8","#d9ecf3","#efe3f5"];
 let pets=[
-{id:1,nombre:"Luna",especie:"Perro",edad:"Adulto",txt:"2 años",salud:"Vacunada y esterilizada",estado:"Disponible"},
-{id:2,nombre:"Michi",especie:"Gato",edad:"Cachorro",txt:"6 meses",salud:"Vacunas al día",estado:"Disponible"},
-{id:3,nombre:"Rocky",especie:"Perro",edad:"Adulto",txt:"4 años",salud:"En tratamiento de piel",estado:"Disponible"},
-{id:4,nombre:"Nube",especie:"Gato",edad:"Adulto",txt:"3 años",salud:"Vacunada y esterilizada",estado:"Adoptada"},
-{id:5,nombre:"Toby",especie:"Perro",edad:"Cachorro",txt:"5 meses",salud:"Primera dosis de vacunas",estado:"Disponible"},
-{id:6,nombre:"Canela",especie:"Perro",edad:"Adulto",txt:"6 años",salud:"Chequeo completo",estado:"Disponible"}];
-let reqs=[];
-let users=[
-{email:"fundacion@demo.com",pass:"1234",nombre:"Fundación Huellas",rol:"fundacion"},
-{email:"ciudadano@demo.com",pass:"1234",nombre:"Ana Pérez",rol:"adoptante"}];
-let user=null,authTab="login",view="landing",sel=null,revId=null,editId=null,confirmDel=null,doc=false,step=1,filtersOpen=false,f={especie:"",edad:"",estado:""};
+{id:1,nombre:"Luna",especie:"Perro",edad:"2 años",salud:"Vacunada y esterilizada",disp:true},
+{id:2,nombre:"Michi",especie:"Gato",edad:"6 meses",salud:"Vacunas al día",disp:true},
+{id:3,nombre:"Rocky",especie:"Perro",edad:"4 años",salud:"Chequeo al día",disp:true},
+{id:4,nombre:"Nube",especie:"Gato",edad:"3 años",salud:"Vacunada y esterilizada",disp:false},
+{id:5,nombre:"Toby",especie:"Perro",edad:"5 meses",salud:"Primera dosis de vacunas",disp:true},
+{id:6,nombre:"Canela",especie:"Perro",edad:"6 años",salud:"Chequeo completo",disp:true}];
+const users=[
+{email:"juan@demo.com",pass:"1234",nombre:"Juan Pérez",rol:"adoptante"},
+{email:"ana@demo.com",pass:"1234",nombre:"Ana Gómez",rol:"adoptante"},
+{email:"encargada@demo.com",pass:"1234",nombre:"Laura Ríos",rol:"encargado"}];
+let reqs=[
+{id:1,pet:1,email:"juan@demo.com",fecha:"02/10/2026",estado:"Pendiente"},
+{id:2,pet:2,email:"ana@demo.com",fecha:"03/10/2026",estado:"Pendiente"},
+{id:3,pet:4,email:"ana@demo.com",fecha:"20/09/2026",estado:"Aprobada"},
+{id:4,pet:3,email:"ana@demo.com",fecha:"25/09/2026",estado:"Rechazada"}];
+const S={view:"landing",user:null,pet:null,req:null};
+const ADOP=["catalogo","ficha","enviar","enviada","mis","detalleA"];
+const ENC=["dashboard","panel","detalleE","confApr","confRech","resApr","resRech"];
 const $=s=>document.querySelector(s);
+const getPet=id=>pets.find(p=>p.id===id);
+const getUser=e=>users.find(u=>u.email===e);
+const tagE=e=>`<span class="tag e-${e}">${e}</span>`;
+const tagP=p=>p.disp?`<span class="tag e-Disponible">Disponible</span>`:`<span class="tag e-nd">No disponible · Adoptada</span>`;
+const ic=e=>e==="Gato"?"ti-cat":"ti-dog";
+const ev=(...a)=>`<div class="ev" aria-label="Evidencia de criterios">Evidencia: ${a.map(x=>`<span>${x}</span>`).join("")}</div>`;
 const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ICON={Disponible:"ti-circle-check",["En revisión"]:"ti-clock",Pendiente:"ti-clock",Adoptada:"ti-heart",Aceptada:"ti-heart",Rechazada:"ti-circle-x"};
-const tag=e=>`<span class="tag s-${e.replace(/ /g,"\\ ")}"><i class="ti ${ICON[e]}" aria-hidden="true"></i>${e}</span>`;
-const icon=e=>e==="Gato"?"ti-cat":"ti-dog";
-function toast(m){const t=$("#toast");t.innerHTML=`<i class="ti ti-circle-check" aria-hidden="true"></i> ${m}`;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2300)}
-function go(v,id){view=v;if(id)sel=id;step=1;confirmDel=null;render();window.scrollTo(0,0)}
+const hoy=()=>new Date().toLocaleDateString("es-CO");
+const avail=()=>pets.filter(p=>p.disp);
+function go(v,x){Object.assign(S,{view:v},x||{});render();window.scrollTo(0,0)}
+function petCard(p,btn){return `<div class="pet"><div class="ph" style="background:${COLORS[p.id%6]}"><i class="ti ${ic(p.especie)}" aria-hidden="true"></i></div><h3>${p.nombre}</h3><p>${p.especie} · ${p.edad} · ${p.salud}</p>${tagP(p)}${btn?`<div style="margin-top:8px"><button class="btn alt block" data-go="ficha" data-pet="${p.id}">Ver ficha</button></div>`:""}</div>`}
 
-function landing(){
-  const feat=pets.filter(p=>p.estado==="Disponible").slice(0,3);
-  return `<div class="hero"><h1><i class="ti ti-paw" aria-hidden="true"></i> PetMatch</h1><p>Bigotes y Colitas — conectamos fundaciones y ciudadanos para una adopción responsable, segura y transparente.</p>
-  <div class="hero-cta"><button class="btn lg" id="search" style="background:var(--sun);color:var(--pri-d)">Buscar mascotas</button><button class="btn lg alt" id="lb">Iniciar sesión</button><button class="btn lg alt" id="rb">Registrarse</button></div></div>
-  <div class="page-head"><h1>Cómo funciona</h1></div>
-  <div class="hiw">
-    <div><i class="ti ti-search" aria-hidden="true"></i><b>1. Busca</b><span style="font-size:12.5px;color:var(--mut)">Filtra por especie y edad</span></div>
-    <div><i class="ti ti-paw" aria-hidden="true"></i><b>2. Conócela</b><span style="font-size:12.5px;color:var(--mut)">Revisa su ficha completa</span></div>
-    <div><i class="ti ti-file-text" aria-hidden="true"></i><b>3. Solicita</b><span style="font-size:12.5px;color:var(--mut)">Envía tu solicitud</span></div>
-    <div><i class="ti ti-list-check" aria-hidden="true"></i><b>4. Consulta</b><span style="font-size:12.5px;color:var(--mut)">Sigue el estado del proceso</span></div>
-  </div>
-  <div class="page-head"><h1>Mascotas disponibles</h1></div>
-  <div class="grid">${feat.map(p=>`<div class="pet"><div class="ph" style="background:${COLORS[p.id%6]}"><i class="ti ${icon(p.especie)}" aria-hidden="true"></i></div><h3>${p.nombre}</h3><p class="meta">${p.especie} · ${p.txt}</p>${tag(p.estado)}</div>`).join("")}</div>`;
-}
-function authScreen(){
-  return `<div class="auth"><div class="brand"><i class="ti ti-paw" aria-hidden="true"></i><h1>PetMatch</h1><p style="color:var(--mut)">Bigotes y Colitas</p></div>
-  <div class="tabs"><button data-t="login" class="${authTab==="login"?"on":""}">Iniciar sesión</button><button data-t="registro" class="${authTab==="registro"?"on":""}">Crear cuenta</button></div>
-  ${authTab==="login"?`<form id="fl" class="panel" novalidate>
-    <label>Correo electrónico<input id="le" type="email" autocomplete="email" placeholder="tu@correo.com"></label>
-    <label>Contraseña<input id="lp" type="password" autocomplete="current-password" placeholder="••••••"></label>
-    <div class="err" id="lerr"></div>
-    <button class="btn block" type="submit"><i class="ti ti-login-2" aria-hidden="true"></i> Entrar</button>
-  </form>
-  <p class="demo">Cuentas de prueba: <a data-demo="fundacion">fundación</a> · <a data-demo="adoptante">adoptante</a></p>`
-  :`<form id="fr" class="panel" novalidate>
-    <label>Tipo de cuenta<div class="seg">
-      <label><input type="radio" name="rol" value="adoptante" checked> Soy adoptante</label>
-      <label><input type="radio" name="rol" value="fundacion"> Soy fundación</label>
-    </div></label>
-    <label id="lblnombre">Nombre completo<input id="rn" autocomplete="name" placeholder="Ana Pérez"></label>
-    <label>Correo electrónico<input id="re" type="email" autocomplete="email" placeholder="tu@correo.com"></label>
-    <label>Contraseña<span class="hint">Mínimo 4 caracteres</span><input id="rp" type="password" autocomplete="new-password" placeholder="••••••"></label>
-    <div class="err" id="rerr"></div>
-    <button class="btn block" type="submit"><i class="ti ti-user-plus" aria-hidden="true"></i> Crear cuenta</button>
-  </form>`}
-  <p class="demo"><a id="toL">← Volver al inicio</a></p></div>`;
-}
-function doLogin(email,pass){
-  const u=users.find(x=>x.email.toLowerCase()===email.toLowerCase()&&x.pass===pass);
-  if(!u){$("#lerr").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Correo o contraseña incorrectos. Verifica tus datos.';return}
-  user=u;view=u.rol==="fundacion"?"dashboard":"catalogo";render();toast("Bienvenido, "+u.nombre);
-}
-function nav(){
-  if(!user)return "";
-  const items=user.rol==="adoptante"?[["catalogo","ti-search","Buscar mascotas"],["mis","ti-list-check","Mis solicitudes"]]:[["dashboard","ti-layout-dashboard","Dashboard"],["mascotas","ti-paw","Mascotas"],["solicitudesF","ti-clipboard-list","Solicitudes"]];
-  return `<nav aria-label="Secciones">${items.map(([k,ic,l])=>`<button data-v="${k}" class="${view===k||(k==="catalogo"&&["ficha","solicitud"].includes(view))?"on":""}"><i class="ti ${ic}" aria-hidden="true"></i>${l}</button>`).join("")}</nav>`;
-}
+const V={
+landing(){return `<div class="landing-hero"><h1><i class="ti ti-paw" aria-hidden="true"></i> PetMatch</h1><p>Bigotes y Colitas: una plataforma para organizar la adopción responsable entre fundaciones y adoptantes.</p><button class="btn lg" style="background:var(--sun);color:var(--pri-d)" data-go="catalogo">Consultar mascotas</button> <button class="btn lg alt" data-go="login">Iniciar sesión</button></div>
+<div class="hero"><div><h1>Mascotas disponibles</h1><p>Inicia sesión como adoptante para ver la ficha y enviar una solicitud.</p></div></div>
+<div class="grid">${avail().slice(0,3).map(p=>petCard(p,false)).join("")}</div>
+<div class="banner"><i class="ti ti-heart-handshake" aria-hidden="true" style="font-size:22px"></i> Adoptar es una decisión responsable. Cada solicitud es revisada por el encargado de adopciones.</div>`},
+login(){return `<div class="auth"><div class="panel"><h2>Iniciar sesión</h2>
+<form id="fl" novalidate><label>Correo<input id="le" type="email" autocomplete="email" placeholder="tu@correo.com"></label>
+<label>Contraseña<input id="lp" type="password" autocomplete="current-password" placeholder="••••"></label>
+<div class="err" id="lerr" role="alert"></div>
+<button class="btn block" type="submit"><i class="ti ti-login-2" aria-hidden="true"></i> Iniciar sesión</button></form>
+<p class="note" style="margin-top:14px">El menú y las acciones cambian según el tipo de usuario: adoptante o encargado de adopciones.</p>
+<div class="demo"><b style="font-size:13px">Cuentas de prueba (contraseña 1234)</b>
+<button data-do="demo" data-u="juan@demo.com">Juan Pérez <small>Adoptante</small></button>
+<button data-do="demo" data-u="ana@demo.com">Ana Gómez <small>Adoptante</small></button>
+<button data-do="demo" data-u="encargada@demo.com">Laura Ríos <small>Encargada de adopciones</small></button></div></div>
+<div style="margin-top:10px">${ev("Sesión de usuario","HU2-03")}</div></div>`},
+catalogo(){const l=avail();return `<div class="hero"><div><h1>Consultar mascotas</h1><p>Solo se muestran las mascotas disponibles.</p></div>${ev("HU3-04","HU4-04")}</div>
+${l.length?`<div class="grid">${l.map(p=>petCard(p,true)).join("")}</div>`:`<p class="empty">No hay mascotas disponibles por ahora.</p>`}`},
+ficha(){const p=getPet(S.pet),mine=reqs.find(r=>r.pet===p.id&&r.email===S.user.email);
+return `<button class="back" data-go="catalogo"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a mascotas</button>
+<div class="panel"><div class="ph" style="height:190px;font-size:76px;background:${COLORS[p.id%6]}"><i class="ti ${ic(p.especie)}" aria-hidden="true"></i></div>
+<h2 style="font-size:26px;margin-bottom:8px">${p.nombre} ${tagP(p)}</h2>
+<dl style="margin-bottom:14px"><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Estado de salud</dt><dd>${p.salud}</dd></dl>
+${mine?`<p class="note">Ya enviaste una solicitud para ${p.nombre}. Estado: ${tagE(mine.estado)}</p><div style="margin-top:10px"><button class="btn alt" data-go="mis">Ir a Mis solicitudes</button></div>`
+:p.disp?`<button class="btn block lg" data-go="enviar" data-pet="${p.id}"><i class="ti ti-heart" aria-hidden="true"></i> Enviar solicitud de adopción</button>`
+:`<p class="note">${p.nombre} ya no está disponible para nuevas solicitudes.</p>`}</div>`},
+enviar(){const p=getPet(S.pet);
+return `<button class="back" data-go="ficha" data-pet="${p.id}"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a la ficha</button>
+<div class="hero"><div><h1>Enviar solicitud de adopción</h1><p>Revisa los datos y envía la solicitud para iniciar el proceso.</p></div>${ev("HU1")}</div>
+<div class="two"><div class="panel"><h2>Mascota</h2><dl><dt>Nombre</dt><dd>${p.nombre}</dd><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Disponibilidad</dt><dd>${tagP(p)}</dd></dl></div>
+<div class="panel"><h2>Adoptante</h2><dl><dt>Nombre</dt><dd>${S.user.nombre}</dd><dt>Correo</dt><dd>${S.user.email}</dd></dl>
+<p class="note" style="margin:12px 0">Al enviarla, la solicitud quedará en estado Pendiente.</p>
+<button class="btn block" data-do="enviarSol"><i class="ti ti-send" aria-hidden="true"></i> Enviar solicitud de adopción</button></div></div>`},
+enviada(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+return `<div class="confirm panel"><i class="ti ti-circle-check" style="color:var(--ok-t)" aria-hidden="true"></i><h2 style="margin:8px 0">Solicitud registrada</h2>
+<p>Tu solicitud para <b>${p.nombre}</b> fue registrada el ${r.fecha}.</p><p>Estado: ${tagE(r.estado)}</p>
+<button class="btn" data-go="mis">Ir a Mis solicitudes</button></div>`},
+mis(){const l=reqs.filter(r=>r.email===S.user.email);
+return `<div class="hero"><div><h1>Mis solicitudes</h1><p>Solicitudes de ${S.user.nombre}. Solo ves las de tu cuenta.</p></div>${ev("HU2-01","HU2-02","HU2-03")}</div>
+<div class="panel"><label style="margin-bottom:8px">Buscar por mascota<input id="q" type="search" placeholder="Ej. Luna"></label>
+${l.length?`<div id="lista">${l.map(r=>{const p=getPet(r.pet);return `<div class="row" data-n="${p.nombre.toLowerCase()}"><span><b>${p.nombre}</b><br><small style="color:var(--mut)">Fecha de solicitud: ${r.fecha}</small></span><span class="acts">${tagE(r.estado)}<button class="btn alt" data-go="detalleA" data-req="${r.id}">Ver detalle</button></span></div>`}).join("")}</div><p class="empty" id="sinres" hidden>No hay solicitudes con ese nombre.</p>`
+:`<p class="empty">Aún no has enviado solicitudes. Consulta las mascotas disponibles para empezar.</p>`}</div>`},
+detalleA(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+const msg={Pendiente:"Tu solicitud está pendiente de revisión por el encargado de adopciones.",Aprobada:"Tu solicitud fue aprobada. Puedes continuar el proceso de adopción.",Rechazada:"Tu solicitud fue rechazada: no cumple los requisitos establecidos para la adopción."}[r.estado];
+return `<button class="back" data-go="mis"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a Mis solicitudes</button>
+<div class="hero"><div><h1>Detalle de mi solicitud</h1></div>${ev("HU2-01","HU2-02")}</div>
+<div class="two"><div class="panel"><h2>Solicitud de adopción</h2><dl><dt>Mascota</dt><dd>${p.nombre}</dd><dt>Fecha de solicitud</dt><dd>${r.fecha}</dd><dt>Estado</dt><dd>${tagE(r.estado)}</dd></dl><p class="note" style="margin-top:12px">${msg}</p></div>
+<div class="panel"><h2>Mascota</h2><dl><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Disponibilidad</dt><dd>${tagP(p)}</dd></dl></div></div>`},
+dashboard(){const c=e=>reqs.filter(r=>r.estado===e).length;
+return `<div class="hero"><div><h1>Dashboard</h1><p>Resumen para el encargado de adopciones.</p></div></div>
+<div class="stats"><div class="stat"><b>${c("Pendiente")}</b><span>Solicitudes pendientes</span></div><div class="stat"><b>${c("Aprobada")}</b><span>Aprobadas</span></div><div class="stat"><b>${c("Rechazada")}</b><span>Rechazadas</span></div><div class="stat"><b>${avail().length}</b><span>Mascotas disponibles</span></div></div>
+<button class="btn" data-go="panel"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Ir a Solicitudes de adopción</button>`},
+panel(){const l=[...reqs].sort((a,b)=>(a.estado==="Pendiente"?0:1)-(b.estado==="Pendiente"?0:1));
+return `<div class="hero"><div><h1>Solicitudes de adopción</h1><p>Selecciona una solicitud pendiente para revisarla.</p></div>${ev("HU3-01","HU4-01")}</div>
+<div class="panel scroll"><table><thead><tr><th>Adoptante</th><th>Mascota</th><th>Estado</th><th>Acción</th></tr></thead><tbody>
+${l.map(r=>{const p=getPet(r.pet),u=getUser(r.email);return `<tr><td>${u.nombre}</td><td>${p.nombre}</td><td>${tagE(r.estado)}</td><td>${r.estado==="Pendiente"?`<button class="btn" data-go="detalleE" data-req="${r.id}">Revisar solicitud</button>`:`<button class="btn alt" data-go="detalleE" data-req="${r.id}">Ver detalle</button>`}</td></tr>`}).join("")}</tbody></table></div>`},
+detalleE(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet),u=getUser(r.email),pen=r.estado==="Pendiente";
+return `<button class="back" data-go="panel"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a solicitudes</button>
+<div class="hero"><div><h1>Detalle de la solicitud</h1></div>${ev("HU3-02","HU4-02")}</div>
+<div class="two"><div class="panel"><h2>Adoptante</h2><dl><dt>Nombre</dt><dd>${u.nombre}</dd><dt>Correo</dt><dd>${u.email}</dd><dt>Fecha de solicitud</dt><dd>${r.fecha}</dd></dl></div>
+<div class="panel"><h2>Mascota</h2><dl><dt>Nombre</dt><dd>${p.nombre}</dd><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.edad}</dd><dt>Disponibilidad</dt><dd>${tagP(p)}</dd></dl></div></div>
+<div class="panel" style="margin-top:18px"><h2>Estado actual: ${tagE(r.estado)}</h2>
+${pen?`<div class="acts"><button class="btn lg" data-go="confApr" data-req="${r.id}"><i class="ti ti-check" aria-hidden="true"></i> Aprobar solicitud</button><button class="btn lg bad" data-go="confRech" data-req="${r.id}"><i class="ti ti-x" aria-hidden="true"></i> Rechazar solicitud</button></div>`
+:`<p class="note">Esta solicitud ya tiene un estado asignado, por lo que no admite una nueva decisión.</p>`}</div>`},
+confApr(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+return `<div class="confirm panel"><i class="ti ti-help-circle" style="color:var(--pri)" aria-hidden="true"></i><h2 style="margin:8px 0">¿Confirmar aprobación?</h2>
+<p><b>¿Desea aprobar esta solicitud?</b></p><p>La solicitud de ${getUser(r.email).nombre} por ${p.nombre} será aprobada y la mascota dejará de aparecer como disponible.</p>
+<div class="acts" style="justify-content:center"><button class="btn alt" data-go="detalleE" data-req="${r.id}">Cancelar</button><button class="btn" data-do="aprobar">Confirmar aprobación</button></div>${ev("HU3-03")}</div>`},
+confRech(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+return `<div class="confirm panel"><i class="ti ti-help-circle" style="color:var(--no-t)" aria-hidden="true"></i><h2 style="margin:8px 0">¿Confirmar rechazo?</h2>
+<p><b>¿Desea rechazar esta solicitud?</b></p><p>La solicitud de ${getUser(r.email).nombre} por ${p.nombre} será marcada como rechazada y la mascota continuará disponible.</p>
+<div class="acts" style="justify-content:center"><button class="btn alt" data-go="detalleE" data-req="${r.id}">Cancelar</button><button class="btn bad" data-do="rechazar">Confirmar rechazo</button></div>${ev("HU4-03")}</div>`},
+resApr(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+return `<div class="hero"><div><h1>Resultado de la aprobación</h1></div>${ev("HU3-03","HU3-04","HU5")}</div>
+<div class="ok-msg"><i class="ti ti-circle-check" aria-hidden="true"></i> Solicitud aprobada correctamente.</div>
+<div class="panel"><h2>Solicitud de ${getUser(r.email).nombre}</h2>
+<div class="ba"><div class="box"><b>Solicitud, antes</b>${tagE("Pendiente")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>Solicitud, ahora</b>${tagE(r.estado)}</div></div>
+<div class="ba"><div class="box"><b>${p.nombre}, antes</b>${tagE("Disponible").replace("e-Aprobada","e-Disponible")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>${p.nombre}, ahora</b>${tagP(p)}</div></div>
+<p class="note">Mascotas disponibles ahora: ${avail().map(x=>x.nombre).join(", ")||"ninguna"}. ${p.nombre} ya no aparece en el listado.</p>
+<div style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button></div></div>`},
+resRech(){const r=reqs.find(x=>x.id===S.req),p=getPet(r.pet);
+return `<div class="hero"><div><h1>Resultado del rechazo</h1></div>${ev("HU4-03","HU4-04")}</div>
+<div class="ko-msg"><i class="ti ti-circle-x" aria-hidden="true"></i> Solicitud rechazada correctamente.</div>
+<div class="panel"><h2>Solicitud de ${getUser(r.email).nombre}</h2>
+<div class="ba"><div class="box"><b>Solicitud, antes</b>${tagE("Pendiente")}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>Solicitud, ahora</b>${tagE(r.estado)}</div></div>
+<div class="ba"><div class="box"><b>${p.nombre}, antes</b>${tagP(p)}</div><i class="ti ti-arrow-right" aria-hidden="true"></i><div class="box"><b>${p.nombre}, ahora</b>${tagP(p)}</div></div>
+<p class="note">${p.nombre} continúa disponible. Mascotas disponibles ahora: ${avail().map(x=>x.nombre).join(", ")}.</p>
+<div style="margin-top:14px"><button class="btn" data-go="panel">Volver a solicitudes</button></div></div>`},
+traza(){const rows=[
+["HU1","Enviar solicitud de adopción, mostrando la mascota","Enviar solicitud de adopción"],
+["HU2","HU2-01 Mostrar estado","Mis solicitudes, Detalle de mi solicitud"],
+["HU2","HU2-02 Estados: Pendiente, Aprobada, Rechazada","Mis solicitudes"],
+["HU2","HU2-03 Solo solicitudes propias","Mis solicitudes (probar con Juan y con Ana)"],
+["HU3","HU3-01 Seleccionar solicitud sin estado","Solicitudes de adopción"],
+["HU3","HU3-02 Opción de aprobar","Detalle de la solicitud"],
+["HU3","HU3-03 Estado cambia a Aprobada","Confirmación y resultado de aprobación"],
+["HU3","HU3-04 La mascota deja de estar disponible","Resultado de aprobación y catálogo"],
+["HU4","HU4-01 Seleccionar solicitud sin estado","Solicitudes de adopción"],
+["HU4","HU4-02 Opción de rechazar","Detalle de la solicitud"],
+["HU4","HU4-03 Estado cambia a Rechazada","Confirmación y resultado de rechazo"],
+["HU4","HU4-04 La mascota continúa disponible","Resultado de rechazo y catálogo"],
+["HU5","El estado se actualiza automáticamente al aprobar","Resultado de aprobación (antes y ahora)"]];
+return `<div class="hero"><div><h1>Trazabilidad</h1><p>Cada criterio de aceptación y la pantalla donde se comprueba. Las etiquetas "Evidencia" de cada pantalla usan estos mismos códigos.</p></div></div>
+<div class="panel scroll"><table><thead><tr><th>Historia</th><th>Criterio</th><th>Pantalla</th></tr></thead><tbody>${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`}
+};
+
 function head(){
-  $("#hd").innerHTML=`<div class="hd-in"><button class="logo" id="lg"><i class="ti ti-paw" aria-hidden="true"></i><span>PetMatch<small>Bigotes y Colitas</small></span></button>${nav()}
-  ${user?`<div class="who">${user.nombre} <button id="out">Salir</button></div>`:(view!=="landing"?`<div class="who"><button id="toLogin">Iniciar sesión</button></div>`:"")}</div>`;
-  $("#lg").onclick=()=>{if(!user){view="landing";render()}};
-  if(!user){const tl=$("#toLogin");if(tl)tl.onclick=()=>{authTab="login";view="auth";render()};return}
-  $("#hd").querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
-  $("#out").onclick=()=>{user=null;view="landing";render()};
-}
-function filterPanel(){
-  return `<div class="filters ${filtersOpen?"open":""}" id="filtersBox"><h3>Filtrar mascotas</h3>
-    <label>Especie<select id="fe"><option value="">Todas</option><option ${f.especie==="Perro"?"selected":""}>Perro</option><option ${f.especie==="Gato"?"selected":""}>Gato</option></select></label>
-    <label>Edad<select id="fa"><option value="">Todas</option><option ${f.edad==="Cachorro"?"selected":""}>Cachorro</option><option ${f.edad==="Adulto"?"selected":""}>Adulto</option></select></label>
-    <label>Disponibilidad<select id="fs"><option value="">Todas</option>${["Disponible","En revisión","Adoptada"].map(x=>`<option ${f.estado===x?"selected":""}>${x}</option>`).join("")}</select></label>
-  </div>`;
-}
-function catalogo(){
-  const list=pets.filter(p=>(!f.especie||p.especie===f.especie)&&(!f.edad||p.edad===f.edad)&&(!f.estado||p.estado===f.estado));
-  return `<div class="page-head"><h1>Buscar mascotas</h1><p>Mascotas de fundaciones que buscan un hogar responsable.</p></div>
-  <button class="btn alt filter-btn" id="ftog"><i class="ti ti-adjustments" aria-hidden="true"></i> Filtrar mascotas</button>
-  <div class="filters-wrap">${filterPanel()}
-  <div style="flex:1">${list.length?`<div class="grid">${list.map(p=>`<div class="pet"><div class="ph" style="background:${COLORS[p.id%6]}"><i class="ti ${icon(p.especie)}" aria-hidden="true"></i></div><h3>${p.nombre}</h3><p class="meta">${p.especie} · ${p.txt} · ${p.salud}</p>${tag(p.estado)}<div style="margin-top:10px"><button class="btn alt block sm" data-id="${p.id}">Ver ficha</button></div></div>`).join("")}</div>`
-  :`<div class="empty"><i class="ti ti-mood-empty" aria-hidden="true"></i>No encontramos mascotas con esos filtros.</div>`}</div></div>`;
-}
-function ficha(){
-  const p=pets.find(x=>x.id===sel), mine=reqs.find(r=>r.pet===p.id&&r.email===user.email);
-  return `<button class="back" id="bk"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver al catálogo</button>
-  <div class="panel"><div class="ph" style="height:220px;font-size:84px;background:${COLORS[p.id%6]}"><i class="ti ${icon(p.especie)}" aria-hidden="true"></i></div>
-  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 4px"><h2>${p.nombre}</h2>${tag(p.estado)}</div>
-  <dl style="margin:14px 0"><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.txt}</dd><dt>Estado de salud</dt><dd>${p.salud}</dd><dt>Fundación</dt><dd>Fundación Huellas</dd></dl>
-  ${p.estado==="Disponible"&&!mine?`<button class="btn block lg" id="solBtn"><i class="ti ti-heart" aria-hidden="true"></i> Solicitar adopción</button>`
-    :mine?`<div class="empty" style="padding:16px"><i class="ti ti-info-circle" aria-hidden="true"></i>Ya enviaste una solicitud para ${p.nombre}. Consulta su estado en "Mis solicitudes".</div>`
-    :`<div class="empty"><i class="ti ti-lock" aria-hidden="true"></i>${p.nombre} ya no está disponible para nuevas solicitudes.</div>`}</div>`;
-}
-const STEPS=["Información","Documentos","Revisión","Enviar"];
-function solicitudForm(){
-  const p=pets.find(x=>x.id===sel);
-  const stepsHtml=`<div class="steps">${STEPS.map((s,i)=>`<div class="${step===i+1?"on":step>i+1?"done":""}">${i+1}. ${s}</div>`).join("")}</div>`;
-  let body="";
-  if(step===1){
-    body=`<div class="panel"><h2>Información del adoptante</h2><p class="sub">Mascota seleccionada: <b>${p.nombre}</b></p>
-    <form id="s1" novalidate>
-    <label>Teléfono de contacto<input id="t" inputmode="tel" value="${window._t||""}" placeholder="3001234567"></label>
-    <label>Tipo de vivienda<select id="v"><option value="">Selecciona una opción</option><option ${window._v==="Casa"?"selected":""}>Casa</option><option ${window._v==="Apartamento"?"selected":""}>Apartamento</option></select></label>
-    <label>¿Por qué quieres adoptar a ${p.nombre}?<textarea id="m" rows="3" placeholder="Cuéntanos sobre tu hogar y tu experiencia con mascotas">${window._m||""}</textarea></label>
-    <div class="err" id="er1"></div>
-    <button class="btn" type="submit">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button></form></div>`;
-  } else if(step===2){
-    body=`<div class="panel"><h2>Documento requerido</h2><p class="sub">La fundación necesita validar tu identidad antes de revisar la solicitud.</p>
-    <div class="file ${doc?"on":""}" id="fileBox" role="button" tabindex="0"><i class="ti ${doc?"ti-circle-check":"ti-upload"}" aria-hidden="true"></i>${doc?"documento_identidad.pdf — cargado":"Toca para seleccionar tu documento de identidad"}</div>
-    ${doc?`<button class="btn alt sm" id="rep" style="margin-top:4px">Reemplazar archivo</button>`:""}
-    <div class="err" id="er2"></div>
-    <div class="acts" style="margin-top:10px"><button class="btn alt" id="back2"><i class="ti ti-arrow-left" aria-hidden="true"></i> Atrás</button><button class="btn" id="next2">Continuar <i class="ti ti-arrow-right" aria-hidden="true"></i></button></div></div>`;
-  } else if(step===3){
-    body=`<div class="panel"><h2>Revisa tu solicitud</h2><p class="sub">Verifica que todo esté correcto antes de enviarla.</p>
-    <div class="summary-box"><dl>
-    <dt>Adoptante</dt><dd>${user.nombre}</dd><dt>Correo</dt><dd>${user.email}</dd><dt>Teléfono</dt><dd>${window._t}</dd><dt>Vivienda</dt><dd>${window._v}</dd>
-    <dt>Mascota</dt><dd>${p.nombre}</dd><dt>Especie</dt><dd>${p.especie}</dd><dt>Documento</dt><dd>${doc?"Cargado":"Pendiente"}</dd></dl></div>
-    <div class="acts" style="margin-top:14px"><button class="btn alt" id="back3"><i class="ti ti-arrow-left" aria-hidden="true"></i> Atrás</button><button class="btn ok2" id="send3"><i class="ti ti-send" aria-hidden="true"></i> Enviar solicitud</button></div></div>`;
-  } else {
-    body=`<div class="panel" style="text-align:center;padding:34px 20px"><i class="ti ti-circle-check" aria-hidden="true" style="font-size:44px;color:var(--ok-t)"></i>
-    <h2 style="margin-top:10px">Solicitud enviada correctamente</h2><p class="sub">Te avisaremos aquí mismo cuando Fundación Huellas la revise.</p>
-    <button class="btn" id="verEstado">Consultar estado de solicitud</button></div>`;
-  }
-  return `${step<4?`<button class="back" id="bk"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a la ficha</button>`:""}
-  <div class="page-head"><h1>Solicitud de adopción</h1></div>${stepsHtml}${body}`;
-}
-function mis(){
-  const own=reqs.filter(r=>r.email===user.email);
-  const stageOf=e=>e==="En revisión"?2:1;
-  return `<div class="page-head"><h1>Mis solicitudes</h1></div>
-  ${own.length?own.map(r=>{const p=pets.find(x=>x.id===r.pet),s=r.estado;
-    const stage=s==="En revisión"?2:3;
-    return `<div class="panel" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px"><div><h2 style="font-size:17px">${p.nombre}</h2><span style="font-size:13px;color:var(--mut)">Enviada el ${r.fecha}</span></div>${tag(s)}</div>
-    <div class="progress">
-      <div class="pt done"><div class="dot"><i class="ti ti-check" aria-hidden="true"></i></div><span>Enviada</span></div><div class="ln"></div>
-      <div class="pt ${stage>=2?"done":""} ${s==="En revisión"?"on":""}"><div class="dot"><i class="ti ti-clock" aria-hidden="true"></i></div><span>En revisión</span></div><div class="ln"></div>
-      <div class="pt ${stage===3?"on":""}"><div class="dot"><i class="ti ${s==="Rechazada"?"ti-x":"ti-heart"}" aria-hidden="true"></i></div><span>Resultado</span></div>
-    </div></div>`}).join(""):`<div class="empty"><i class="ti ti-file-off" aria-hidden="true"></i>No tienes solicitudes todavía. Ve a "Buscar mascotas" para empezar.</div>`}`;
-}
-function count(e){return pets.filter(p=>p.estado===e).length}
-function dashboard(){
-  const pend=reqs.filter(r=>r.estado==="En revisión").length;
-  return `<div class="page-head"><h1>Dashboard</h1><p>Panel de Fundación Huellas.</p></div>
-  <div class="two"><div class="panel"><h2><i class="ti ti-paw" aria-hidden="true"></i> Mascotas</h2><p class="sub">${count("Disponible")} disponibles · ${count("En revisión")} en revisión</p><button class="btn alt" data-v="mascotas">Gestionar mascotas</button></div>
-  <div class="panel"><h2><i class="ti ti-clipboard-list" aria-hidden="true"></i> Solicitudes</h2><p class="sub">${pend?pend+" solicitud(es) esperan revisión":"No hay solicitudes pendientes"}</p><button class="btn alt" data-v="solicitudesF">Ver solicitudes</button></div></div>`;
-}
-function solicitudesF(){
-  return `<div class="page-head"><h1>Solicitudes recibidas</h1></div>
-  ${reqs.length?reqs.map((r,i)=>{const p=pets.find(x=>x.id===r.pet);return `<div class="card-row"><div class="pet-mini"><div class="pet-ico" style="background:${COLORS[p.id%6]}"><i class="ti ${icon(p.especie)}" aria-hidden="true"></i></div><span><b>${r.nombre}</b> quiere adoptar a <b>${p.nombre}</b><br><small style="color:var(--mut)">${r.fecha}</small></span></div><span class="acts">${tag(r.estado)}<button class="btn alt sm" data-rev="${i}">Revisar</button></span></div>`}).join(""):`<div class="empty"><i class="ti ti-inbox" aria-hidden="true"></i>Todavía no hay solicitudes. Cuando un ciudadano envíe una, aparecerá aquí.</div>`}`;
-}
-function revision(){
-  const r=reqs[revId],p=pets.find(x=>x.id===r.pet);
-  return `<button class="back" id="bk"><i class="ti ti-arrow-left" aria-hidden="true"></i> Volver a solicitudes</button>
-  <div class="page-head"><h1>Revisar solicitud</h1></div>
-  <div class="two"><div class="panel"><h2>Adoptante</h2><dl style="margin-bottom:14px"><dt>Nombre</dt><dd>${r.nombre}</dd><dt>Correo</dt><dd>${r.email}</dd><dt>Teléfono</dt><dd>${r.tel}</dd><dt>Vivienda</dt><dd>${r.vivienda}</dd></dl>
-  <p style="font-size:14px"><b>Motivo:</b> ${r.motivo}</p>
-  <h2 style="margin-top:16px;font-size:15px">Documentos</h2><div style="border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 12px;font-size:13.5px;display:inline-flex;gap:7px;align-items:center;margin-top:6px"><i class="ti ti-file-text" aria-hidden="true"></i> documento_identidad.pdf</div></div>
-  <div class="panel"><h2>Mascota</h2><dl style="margin-bottom:16px"><dt>Nombre</dt><dd>${p.nombre}</dd><dt>Especie</dt><dd>${p.especie}</dd><dt>Edad</dt><dd>${p.txt}</dd></dl>
-  <h2 style="font-size:15px">Estado de la solicitud</h2>
-  <div class="radios" id="radios" style="margin-top:8px">
-    <label><input type="radio" name="est" value="En revisión" ${r.estado==="En revisión"?"checked":""}> Pendiente</label>
-    <label><input type="radio" name="est" value="Aceptada" ${r.estado==="Aceptada"?"checked":""}> Aceptar</label>
-    <label><input type="radio" name="est" value="Rechazada" ${r.estado==="Rechazada"?"checked":""}> Rechazar</label>
-  </div>
-  <button class="btn block" style="margin-top:14px" id="updBtn"><i class="ti ti-refresh" aria-hidden="true"></i> Actualizar estado</button></div></div>`;
-}
-function mascotas(){
-  return `<div class="page-head"><h1>Gestión de mascotas</h1></div>
-  <div class="panel" style="margin-bottom:18px"><h2 style="font-size:16px">Registrar nueva mascota</h2>
-  <form id="nm" novalidate style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));align-items:end;display:grid;margin-top:10px">
-  <label>Nombre<input id="pn" placeholder="Bruno"></label>
-  <label>Especie<select id="pe"><option>Perro</option><option>Gato</option></select></label>
-  <label>Edad<select id="pa"><option>Cachorro</option><option>Adulto</option></select></label>
-  <button class="btn" type="submit"><i class="ti ti-plus" aria-hidden="true"></i> Crear mascota</button></form><div class="err" id="ne"></div></div>
-  <div class="panel">${pets.map(p=>{
-    if(confirmDel===p.id)return `<div class="card-row"><div class="confirm"><span><i class="ti ti-alert-triangle" aria-hidden="true"></i> ¿Está seguro de que desea eliminar a ${p.nombre}?</span><span class="acts"><button class="btn bad sm" data-delok="${p.id}">Sí, eliminar</button><button class="btn alt sm" data-delno="1">Cancelar</button></span></div></div>`;
-    if(editId===p.id)return `<div class="card-row"><div class="editrow">
-    <label>Nombre<input id="en" value="${p.nombre}"></label>
-    <label>Salud<input id="es" value="${p.salud}"></label>
-    <label>Disponibilidad<select id="ee"><option ${p.estado==="Disponible"?"selected":""}>Disponible</option><option ${p.estado==="En revisión"?"selected":""}>En revisión</option><option ${p.estado==="Adoptada"?"selected":""}>Adoptada</option></select></label>
-    <span class="acts"><button class="btn sm" data-save="${p.id}">Guardar</button><button class="btn alt sm" data-cancel="1">Cancelar</button></span>
-  </div></div>`;
-    return `<div class="card-row"><div class="pet-mini"><div class="pet-ico" style="background:${COLORS[p.id%6]}"><i class="ti ${icon(p.especie)}" aria-hidden="true"></i></div><span><b>${p.nombre}</b><br><small style="color:var(--mut)">${p.especie} · ${p.edad} · ${p.salud}</small></span></div><span class="acts">${tag(p.estado)}<button class="btn alt sm" data-view="${p.id}" aria-label="Ver ${p.nombre}"><i class="ti ti-eye" aria-hidden="true"></i> Ver</button><button class="btn alt sm" data-edit="${p.id}" aria-label="Editar ${p.nombre}"><i class="ti ti-pencil" aria-hidden="true"></i> Editar</button><button class="btn alt sm" data-del="${p.id}" aria-label="Eliminar ${p.nombre}"><i class="ti ti-trash" aria-hidden="true"></i></button></span></div>`;
-  }).join("")}</div>`;
+  const u=S.user,items=!u?[]:u.rol==="adoptante"?[["catalogo","Mascotas"],["mis","Mis solicitudes"]]:[["dashboard","Dashboard"],["panel","Solicitudes de adopción"]];
+  const on=k=>S.view===k||(k==="catalogo"&&["ficha","enviar","enviada"].includes(S.view))||(k==="mis"&&S.view==="detalleA")||(k==="panel"&&["detalleE","confApr","confRech","resApr","resRech"].includes(S.view));
+  $("#hd").innerHTML=`<button class="logo" data-go="${!u?"landing":u.rol==="adoptante"?"catalogo":"dashboard"}"><i class="ti ti-paw" aria-hidden="true"></i><span>PetMatch<small>Bigotes y Colitas</small></span></button>
+  <nav aria-label="Principal">${items.map(([k,l])=>`<button data-go="${k}" class="${on(k)?"on":""}">${l}</button>`).join("")}</nav>
+  ${u?`<div class="who">${u.nombre} · ${u.rol==="adoptante"?"Adoptante":"Encargada de adopciones"} <button data-do="logout">Salir</button></div>`:(S.view!=="login"?`<div class="who"><button data-go="login">Iniciar sesión</button></div>`:"")}`;
 }
 function render(){
-  head();
-  if(view==="landing"){$("#app").innerHTML=landing();$("#lb").onclick=()=>{authTab="login";view="auth";render()};$("#rb").onclick=()=>{authTab="registro";view="auth";render()};$("#search").onclick=()=>{authTab="login";view="auth";render()};return}
-  if(view==="auth"){$("#app").innerHTML=authScreen();
-    document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{authTab=b.dataset.t;render()});
-    $("#toL").onclick=()=>{view="landing";render()};
-    const fl=$("#fl");if(fl)fl.onsubmit=e=>{e.preventDefault();doLogin($("#le").value.trim(),$("#lp").value)};
-    const fr=$("#fr");if(fr){
-      document.querySelectorAll('input[name=rol]').forEach(r=>r.onchange=()=>{$("#lblnombre").firstChild.textContent=(r.value==="fundacion"&&r.checked)?"Nombre de la fundación":"Nombre completo"});
-      fr.onsubmit=e=>{e.preventDefault();
-        const n=$("#rn").value.trim(),em=$("#re").value.trim(),p=$("#rp").value,rol=document.querySelector('input[name=rol]:checked').value;
-        if(!n||!em||p.length<4){$("#rerr").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Completa todos los campos con una contraseña de al menos 4 caracteres.';return}
-        if(!EMAIL_RE.test(em)){$("#rerr").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Ingresa un correo válido, por ejemplo nombre@dominio.com.';return}
-        if(users.some(u=>u.email.toLowerCase()===em.toLowerCase())){$("#rerr").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Ya existe una cuenta con ese correo.';return}
-        const u={email:em,pass:p,nombre:n,rol};users.push(u);user=u;view=rol==="fundacion"?"dashboard":"catalogo";render();toast("Cuenta creada. ¡Bienvenido, "+n+"!")};
-    }
-    document.querySelectorAll("[data-demo]").forEach(a=>a.onclick=()=>doLogin(a.dataset.demo==="fundacion"?"fundacion@demo.com":"ciudadano@demo.com","1234"));
-    return;
-  }
-  $("#app").innerHTML={catalogo,ficha,solicitud:solicitudForm,mis,dashboard,solicitudesF,revision,mascotas}[view]();
-  if(view==="catalogo"){
-    const bind=()=>{$("#fe").onchange=e=>{f.especie=e.target.value;render()};$("#fa").onchange=e=>{f.edad=e.target.value;render()};$("#fs").onchange=e=>{f.estado=e.target.value;render()}};
-    bind();
-    const ft=$("#ftog");if(ft)ft.onclick=()=>{filtersOpen=!filtersOpen;render()};
-    document.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>go("ficha",+b.dataset.id));
-  }
-  if(view==="ficha"){
-    $("#bk").onclick=()=>go("catalogo");
-    const sb=$("#solBtn");if(sb)sb.onclick=()=>{doc=false;step=1;window._t=window._v=window._m="";go("solicitud")};
-  }
-  if(view==="solicitud"){
-    if(step<4)$("#bk").onclick=()=>go("ficha");
-    if(step===1)$("#s1").onsubmit=e=>{e.preventDefault();
-      const t=$("#t").value.trim(),v=$("#v").value,m=$("#m").value.trim();
-      if(!t||!v||!m){$("#er1").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Completa todos los campos para continuar.';return}
-      window._t=t;window._v=v;window._m=m;step=2;render()};
-    if(step===2){
-      $("#fileBox").onclick=()=>{doc=true;render()};
-      const rep=$("#rep");if(rep)rep.onclick=()=>{doc=false;render()};
-      $("#back2").onclick=()=>{step=1;render()};
-      $("#next2").onclick=()=>{if(!doc){$("#er2").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Carga tu documento de identidad antes de continuar.';return}step=3;render()};
-    }
-    if(step===3){
-      $("#back3").onclick=()=>{step=2;render()};
-      $("#send3").onclick=()=>{
-        const hoy=new Date().toLocaleDateString("es-CO");
-        reqs.push({pet:sel,email:user.email,nombre:user.nombre,tel:window._t,vivienda:window._v,motivo:window._m,estado:"En revisión",fecha:hoy});
-        pets.find(p=>p.id===sel).estado="En revisión";step=4;render()};
-    }
-    if(step===4)$("#verEstado").onclick=()=>go("mis");
-  }
-  if(view==="dashboard")document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>go(b.dataset.v));
-  if(view==="solicitudesF")document.querySelectorAll("[data-rev]").forEach(b=>b.onclick=()=>{revId=+b.dataset.rev;go("revision")});
-  if(view==="revision"){
-    $("#bk").onclick=()=>go("solicitudesF");
-    $("#updBtn").onclick=()=>{
-      const est=document.querySelector('input[name=est]:checked').value,r=reqs[revId],p=pets.find(x=>x.id===r.pet);
-      r.estado=est;p.estado=est==="Aceptada"?"Adoptada":est==="Rechazada"?"Disponible":"En revisión";
-      toast("Estado actualizado: "+est);go("solicitudesF")};
-  }
-  if(view==="mascotas"){
-    $("#nm").onsubmit=e=>{e.preventDefault();const n=$("#pn").value.trim();
-      if(!n){$("#ne").innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i> Escribe el nombre de la mascota.';return}
-      pets.push({id:Date.now()%100000,nombre:n,especie:$("#pe").value,edad:$("#pa").value,txt:$("#pa").value==="Cachorro"?"Cachorro":"Adulto",salud:"Por registrar",estado:"Disponible"});
-      toast(n+" registrada");render()};
-    document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{confirmDel=+b.dataset.del;render()});
-    document.querySelectorAll("[data-delok]").forEach(b=>b.onclick=()=>{const n=pets.find(p=>p.id===+b.dataset.delok).nombre;pets=pets.filter(p=>p.id!==+b.dataset.delok);confirmDel=null;toast(n+" eliminada");render()});
-    document.querySelectorAll("[data-delno]").forEach(b=>b.onclick=()=>{confirmDel=null;render()});
-    document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{editId=+b.dataset.edit;render()});
-    document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{sel=+b.dataset.view;go("ficha")});
-    const c=$("[data-cancel]");if(c)c.onclick=()=>{editId=null;render()};
-    const sv=$("[data-save]");if(sv)sv.onclick=()=>{
-      const p=pets.find(x=>x.id===+sv.dataset.save);
-      p.nombre=$("#en").value.trim()||p.nombre;p.salud=$("#es").value.trim()||p.salud;p.estado=$("#ee").value;
-      editId=null;toast("Mascota actualizada");render()};
-  }
+  const u=S.user;
+  if(ADOP.includes(S.view)&&(!u||u.rol!=="adoptante"))S.view=u?"dashboard":"login";
+  else if(ENC.includes(S.view)&&(!u||u.rol!=="encargado"))S.view=u?"catalogo":"login";
+  if(["detalleA"].includes(S.view)){const r=reqs.find(x=>x.id===S.req);if(!r||r.email!==u.email)S.view="mis"}
+  if(["ficha","enviar"].includes(S.view)&&!getPet(S.pet))S.view="catalogo";
+  head();$("#app").innerHTML=V[S.view]();
+}
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-go]");
+  if(g){const d=g.dataset,x={};if(d.pet)x.pet=+d.pet;if(d.req)x.req=+d.req;go(d.go,x);return}
+  const a=e.target.closest("[data-do]");if(!a)return;
+  const k=a.dataset.do;
+  if(k==="logout"){S.user=null;go("landing")}
+  else if(k==="demo")login(a.dataset.u,"1234");
+  else if(k==="enviarSol"){
+    if(reqs.some(r=>r.pet===S.pet&&r.email===S.user.email)||!getPet(S.pet).disp)return;
+    const id=Math.max(...reqs.map(r=>r.id))+1;
+    reqs.push({id,pet:S.pet,email:S.user.email,fecha:hoy(),estado:"Pendiente"});go("enviada",{req:id})}
+  else if(k==="aprobar"){const r=reqs.find(x=>x.id===S.req);if(r.estado!=="Pendiente")return;r.estado="Aprobada";getPet(r.pet).disp=false;go("resApr")}
+  else if(k==="rechazar"){const r=reqs.find(x=>x.id===S.req);if(r.estado!=="Pendiente")return;r.estado="Rechazada";go("resRech")}
+});
+document.addEventListener("submit",e=>{if(e.target.id==="fl"){e.preventDefault();login($("#le").value.trim(),$("#lp").value)}});
+document.addEventListener("input",e=>{if(e.target.id!=="q")return;
+  const t=e.target.value.trim().toLowerCase();let n=0;
+  document.querySelectorAll("#lista .row").forEach(r=>{const show=r.dataset.n.includes(t);r.hidden=!show;if(show)n++});
+  $("#sinres").hidden=n>0});
+function login(email,pass){
+  const err=m=>{const x=$("#lerr");if(x)x.textContent=m};
+  if(!EMAIL_RE.test(email))return err("Ingresa un correo válido, por ejemplo nombre@dominio.com.");
+  const u=users.find(x=>x.email.toLowerCase()===email.toLowerCase()&&x.pass===pass);
+  if(!u)return err("Correo o contraseña incorrectos.");
+  S.user=u;go(u.rol==="adoptante"?"catalogo":"dashboard");
 }
 render();
 </script>
